@@ -1,32 +1,36 @@
 # Iterate with MlFlow
 
-Now that we have already built a simple, we want to make it better! The ultimate goal is having a model that makes more accurate predictions on the test set, hence getting a RMSE as low as possible.
+Now that we have already built a simple model, we want to make it better! The ultimate goal is to have a model that makes more accurate predictions on the test set, hence getting a `RMSE` as low as possible.
 
 **So what can we do?**
 
 There are many different things that make models better:
-- build and try to use different or more features
-- test with different estimators (linear, non linear, etc..)
-- Test influce of distance definition
-
+- Build and try to use different or more features
+- Test with different estimators (linear, non linear, etc.)
+- Test influence of distance definition
 
 ## Installation and MlFlow setup
+
 ```bash
 make install
 ```
 
 1. If you want to run mlflow locally:
-- Open new terminal window and run `mlflow ui` at the root of this repository
+- Open a new terminal window and run `mlflow ui` at the root of this repository
+- See the results [in your browser](http://localhost:5000/)
 
 2. If you want to log parameters to remote instance
-- modify MLFLOW_URI inside `trainer.py`
+- modify `MLFLOW_URI` inside `trainer.py`
 
 ## Parameters to set
- - Inpsect how parameters are passed to `Trainer()` class inside `TaciFareMoel/trainer.py`
- - We will play with these parameters to run different experiments
+
+- Inspect how parameters are passed to the `Trainer()` instance inside `TaxiFareModel/trainer.py`
+- We will play with these parameters to run different experiments
 
 ## Experiments
-Inside `main.py` we define 3 experiments, for each experiments we generate a list of parameters, i.e:
+
+Inside `main.py`, we define 3 experiments, for each experiment we generate a list of parameters, i.e:
+
 ```python
 def distance_experiment(default_params=DEFAULT_PARAMS):
     new_params = copy(default_params)
@@ -38,11 +42,10 @@ def distance_experiment(default_params=DEFAULT_PARAMS):
         params["distance_type"] = distance_type
         l_params.append(params)
     return l_params
-``` 
+```
 
 ## How to use
-- Chose experiments amongst `distance_experiment`, `model_experiment` and `feat_eng_experiment`
-- generate list of parameters 
-- run workflow for each set of parameters
 
-
+- Choose experiments amongst `distance_experiment`, `model_experiment` and `feat_eng_experiment`
+- generate a list of parameters
+- run the workflow for each set of parameters
