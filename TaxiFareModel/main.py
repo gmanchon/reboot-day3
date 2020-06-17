@@ -9,7 +9,7 @@ from TaxiFareModel.trainer import Trainer
 ####################################
 #  generation liste de parametres  #
 ####################################
-DEFAULT_PARAMS = dict(nrows=100000,
+DEFAULT_PARAMS = dict(nrows=100_000,
                       local=True,  # set to False to get data from GCP (Storage or BigQuery)
                       optimize=True,
                       estimator="xgboost",
@@ -86,8 +86,9 @@ def workflow(X, y, params):
 if __name__ == "__main__":
     warnings.simplefilter(action='ignore', category=FutureWarning)
     # Get params list
-    l_params = distance_experiment()
+    l_params = [distance_experiment(), model_experiment(), feat_eng_experiment()]
     # Get data
-    X, y = load_data(l_params[0])
-    for params in l_params:
-        workflow(X, y, params)
+    X, y = load_data(l_params[0][0])
+    for l_param in l_params:
+        for params in l_param:
+            workflow(X, y, params)

@@ -209,10 +209,10 @@ class Trainer(object):
 if __name__ == "__main__":
     warnings.simplefilter(action='ignore', category=FutureWarning)
     # Get and clean data
-    experiment = "taxifare_set_YOURNAME"
+    experiment = "taxifare_reboot_day3"
     if "YOURNAME" in experiment:
         print(colored("Please define MlFlow experiment variable with your own name", "red"))
-    params = dict(nrows=1000000,
+    params = dict(nrows=10_000,
                   local=False,  # set to False to get data from GCP (Storage or BigQuery)
                   optimize=True,
                   estimator="xgboost",
